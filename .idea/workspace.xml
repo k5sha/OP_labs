@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3a35ab73-ffe7-41b8-bde9-ff63b7716f81" name="Changes" comment="First commit">
-      <change afterPath="$PROJECT_DIR$/Lab_1/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Lab_1/HelloWorld/src/HelloWorld.java" beforeDir="false" afterPath="$PROJECT_DIR$/Lab_1/HelloWorld/src/HelloWorld.java" afterDir="false" />
+    <list default="true" id="3a35ab73-ffe7-41b8-bde9-ff63b7716f81" name="Changes" comment="First lab">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Lab_1/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/Lab_1/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,6 +40,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "ASKED_MARK_IGNORED_FILES_AS_EXCLUDED": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -48,9 +50,15 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "vcs.Git",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -67,7 +75,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1725617352718</updated>
-      <workItem from="1725617353743" duration="2797000" />
+      <workItem from="1725617353743" duration="3628000" />
     </task>
     <task id="LOCAL-00001" summary="First commit">
       <option name="closed" value="true" />
@@ -93,7 +101,31 @@
       <option name="project" value="LOCAL" />
       <updated>1725617672461</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1725621116830</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1725621116830</updated>
+    </task>
+    <task id="LOCAL-00005" summary="First commit">
+      <option name="closed" value="true" />
+      <created>1725621120113</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1725621120113</updated>
+    </task>
+    <task id="LOCAL-00006" summary="First lab">
+      <option name="closed" value="true" />
+      <created>1725621310456</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1725621310456</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -101,6 +133,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
+    <MESSAGE value="First lab" />
+    <option name="LAST_COMMIT_MESSAGE" value="First lab" />
   </component>
 </project>

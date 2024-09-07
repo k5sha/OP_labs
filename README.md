@@ -5,6 +5,6 @@
 ### - [Список лабораторних](https://drive.google.com/drive/folders/15S769RqzsDZ_84l7n6WZJ23PY7iw09d2)
 ## Лабороторні роботи:
 - [Лабороторна №1](https://github.com/k5sha/OP_labs/tree/master/1_Lab)
-- - [Лабороторна №1](https://github.com/k5sha/OP_labs/tree/master/2_Lab)
+- [Лабороторна №2](https://github.com/k5sha/OP_labs/tree/master/2_Lab)
 - Інші у процесі... 😇
 

@@ -6,14 +6,9 @@
 [Сама лабороторна](https://docs.google.com/document/d/10rnqlMyFtovVrV-nZTTk0k1Bc-jKuIcR/edit)
 
 ## Запуск коду
+- Компіляція файлу: `javac src/HelloWorld.java`
+- Запуск скомпільованого: `java -classpath src/ HelloWorld`
 
-> [!IMPORTANT]
->  Команди прописувати у директорії `src/` ‼️
->  Наприклад  `~/Labs/Lab_1/HelloWorld/src`
-
-
-- Компіляція файлу: `javac HelloWorld.java`
-- Запуск скомпільованого: `java HelloWorld`
 ##  Контрольні питання:
 
 #### 1. Чим компіляція відрізняється від інтерпретації? Які переваги кожної з них?

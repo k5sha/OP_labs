@@ -7,14 +7,8 @@
 [Сама лабороторна](https://docs.google.com/document/d/10tDxzL34iXCWwwIWMhYfdMAL3GBLkGYU/edit)
 
 ## Запуск коду
-
-> [!IMPORTANT]
->  Команди прописувати у директорії `src/` ‼️
->  Наприклад  `~/Labs/Lab_2/OperatorsAndDataType/src`
-
-
-- Компіляція файлу: `javac OperatorsAndDataType.java`
-- Запуск скомпільованого: `java OperatorsAndDataType`
+- Компіляція файлу: `javac src/OperatorsAndDataType.java`
+- Запуск скомпільованого: `java -classpath src/ OperatorsAndDataType`
 
 ##  Контрольні питання:
 

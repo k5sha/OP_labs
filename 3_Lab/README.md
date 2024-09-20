@@ -1,7 +1,7 @@
 # Лабораторна робота №1
-### Тема: Перше знайомство с Java
+### Тема: Управління потоком виконання
 
 ### Виконано групою номер **12**
 
-[Сама лабороторна](https://docs.google.com/document/d/10rnqlMyFtovVrV-nZTTk0k1Bc-jKuIcR/edit)
+[Сама лабороторна](https://docs.google.com/document/d/11fW-pEmBKQ1iS3uXwppY2oJHCmGSY36P/edit)
 

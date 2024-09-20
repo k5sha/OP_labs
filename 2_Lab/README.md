@@ -114,7 +114,7 @@ XOR (^) повертає 1, якщо тільки один з відповід�
     ```
     ```Java
     boolean b = true && false || false;
-    System.out.println(b); // true
+    System.out.println(b); // false
     ```
     
 

@@ -65,6 +65,11 @@
             System.out.println("a = b");
         }
 ```
+```Java
+a is false
+b is true
+a = b
+```
 ### 14. До якого результату призведе виконання наступного фрагменту коду? Перевірте. Поясніть.
 ``` Java      
         int a = 1;
@@ -77,6 +82,10 @@
             case 4: System.out.println("4");            
         }
 ```
+```Java
+3
+4
+```
 ### 15. До якого результату призведе виконання наступного фрагменту коду (true/false)? Перевірте. Поясніть.
 ```Java   
         double sum = 0;                
@@ -85,4 +94,8 @@
             sum = sum + 1/i;
         }
         System.out.println(sum > 1);
+```
+```Java
+False
+A JNI error has occurred, please check your installation and try again
 ```

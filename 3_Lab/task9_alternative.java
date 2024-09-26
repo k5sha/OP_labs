@@ -94,5 +94,8 @@ public class task9_alternative {
         printResult(0, Double.MAX_VALUE);
         printResult(1, Double.MAX_VALUE);
         printResult(1, Double.NaN);
+
+        // additional use-case (calls oddSum with wrong input parameters)
+        printResult(-1, 9);
     }
 }

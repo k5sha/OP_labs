@@ -1,11 +1,27 @@
 import static java.lang.Math.sqrt;
 
+/**
+ * Детальніше чому рішень до завдання 9 - два (task9.java і task9_alternative.java)
+ * описано у task9.java
+ */
+
 public class task9_alternative {
 
+    /**
+     * Допоміжний метод, який перевіряє число на парність
+     */
     private static boolean isEven(double number){
         return number % 2 == 0;
     }
 
+    /**
+     * Здійснення обрахунків для випадку непарного l.
+     * Сума (t разів) коренів добутку t і l.
+     *
+     * Використано i <= t, оскільки сигма-вираз включає в себе значення t.
+     *
+     * @return якщо t * l менше нуля  → помилка, інакше → результат
+     */
     private static double oddSum(double t, double l){
         if(t * l < 0)
             throw new IllegalArgumentException("t multiplied by l must be more or equal to zero (when l is odd)");
@@ -18,6 +34,14 @@ public class task9_alternative {
         return result;
     }
 
+    /**
+     * Здійснення обрахунків для випадку парного l.
+     * Сума (t разів) коренів добутку t і l.
+     *
+     * Використано i <= t, оскільки сигма-вираз включає в себе значення t.
+     *
+     * @return якщо t менший або рівний нулю → помилка, інакше → результат
+     */
     private static double evenSum(double t, double l){
         if(t <= 0)
             throw new IllegalArgumentException("t must be more than zero (when l is even)");
@@ -30,10 +54,20 @@ public class task9_alternative {
         return result;
     }
 
+    /**
+     * Метод, що дає розв'язок на завдання 9.
+     *
+     * Як на мене, тернарний оператор виглядає дуже зручно в цьому випадку.
+     * Це набагато краще ніж кілька строк з if-ом.
+     */
     public static double calculate(double t, double l){
         return isEven(l) ? evenSum(t, l) : oddSum(t, l);
     }
 
+    /**
+     * Допоміжний метод, що виводить у консоль
+     * вхідні аргументи, результат і обробляє помилки
+     */
     public static void printResult(double t, double l){
         System.out.print("t:" + t + "\t\t\tl:" + l + "\t\t\tresult: ");
 

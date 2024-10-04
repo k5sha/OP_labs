@@ -9,7 +9,7 @@ public class task65 {
      */
     public static int[] reverse(int[] originalArray){
         if(originalArray == null)
-            return null;
+            throw new IllegalArgumentException("Масив має бути присутнім (не бути null)");
 
         int[] reversedArray = new int[originalArray.length];
 
@@ -21,13 +21,27 @@ public class task65 {
     }
 
     public static void main(String[] args) {
-        int[] originalArray = {1, 2, 3, 4, 5};
         int[] reversedArray;
+        int[][] testArrays = {
+                {1, -2, 3, -4, 3},
+                {-1, -5, -2, -3},
+                {7, 3, -8, 1, 2},
+                {0, 0, 0},
+                {10, -10, 5, -15},
+                {Integer.MIN_VALUE, Integer.MAX_VALUE},
+                {-1, 2, 3, 4, -5},
+                null
+        };
 
-        reversedArray = reverse(originalArray);
-        System.out.println(Arrays.toString(reversedArray));
-
-        reversedArray = reverse(null);
-        System.out.println(Arrays.toString(reversedArray));
+        for (int[] array : testArrays) {
+            try {
+                reversedArray = reverse(array);
+                System.out.println("Масив: " + Arrays.toString(array)+
+                        "   |   Обернений масив: " + Arrays.toString(reversedArray));
+            } catch (IllegalArgumentException e) {
+                System.out.println("Array: " + Arrays.toString(array) +
+                        "   |   Помилка: " + e.getMessage());
+            }
+        }
     }
 }

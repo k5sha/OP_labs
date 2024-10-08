@@ -46,7 +46,7 @@ System.out.println("Кількість стовпців: " + cols);
     System.out.println(b.length); // 1
     System.out.println(b[0].length); // 2
 ```
- Результат => ```1 - 3 2 - 1```
+ Результат => ```1) - 3 ; 2) - 1```
 ### 7. Є наступний фрагмент коду:
 ```Java
     int[] a = {1, 2};

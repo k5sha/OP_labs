@@ -11,7 +11,29 @@ public class task8 {
             throw new NullPointerException("Матриці не можуть бути пустими");
         }
 
-        if (a.length == 0 || b.length == 0 || a[0].length != b.length) {
+        if (a.length == 0 || b.length == 0) {
+            throw new IllegalArgumentException("Матриці не можуть бути порожніми");
+        }
+
+        // Check if all rows have the same length
+        for (int[] row : a) {
+            if (row == null) {
+                throw new IllegalArgumentException("Рядок матриці A не може бути null");
+            }
+            if (row.length != a[0].length) {
+                throw new IllegalArgumentException("Матриця A має неоднакові довжини рядків");
+            }
+        }
+        for (int[] row : b) {
+            if (row == null) {
+                throw new IllegalArgumentException("Рядок матриці B не може бути null");
+            }
+            if (row.length != b[0].length) {
+                throw new IllegalArgumentException("Матриця B має неоднакові довжини рядків");
+            }
+        }
+
+        if (a[0].length != b.length) {
             throw new IllegalArgumentException("Матриці не можуть бути помножені: неправильні розміри");
         }
 
@@ -29,7 +51,21 @@ public class task8 {
             }
         }
 
+        validateResultMatrix(result);
+
         return result;
+    }
+
+    private static void validateResultMatrix(int[][] results) {
+        if (results.length == 0) {
+            throw new IllegalArgumentException("Результуюча матриця не може бути порожньою");
+        }
+
+        for (int[] row : results) {
+            if (row == null) {
+                throw new IllegalArgumentException("Рядок матриці не може бути null");
+            }
+        }
     }
 
     public static void main(String[] args) {
@@ -48,11 +84,32 @@ public class task8 {
         int[][] c = {
                 {1, 2, 3}
         };
-
         testMultiplication(a, c);
 
         // Пуста матриця
         testMultiplication(null, b);
+        testMultiplication(a, null);
+
+        // Неправильні довжини рядків
+        int[][] d = {
+                {1, 2},
+                {}
+        };
+        testMultiplication(a, d);
+
+        // Однорідні матриці
+        int[][] e = {
+                {0, 1},
+                {1, 0}
+        };
+        testMultiplication(a, e);
+
+        // Матриця 1x1
+        int[][] f = {
+                {5}
+        };
+        testMultiplication(a, f);
+
     }
 
     private static void testMultiplication(int[][] a, int[][] b) {

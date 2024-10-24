@@ -28,5 +28,7 @@ public class lab7 {
         demo(new InsertionSort());
         System.out.println("===== Сортування бульбашкою =====");
         demo(new BubbleSort());
+        System.out.println("===== Швидке сортування =====");
+        demo(new QuickSort());
     }
 }

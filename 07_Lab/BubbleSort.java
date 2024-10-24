@@ -9,6 +9,7 @@ public class BubbleSort implements SortStrategy{
      * @param a - масив чисел short
      * @return відсортований за спаданням масив
      */
+    @Override
     public short[] sort(short[] a) {
         if (a == null)
             throw new NullPointerException("Не можливо сортувати null");

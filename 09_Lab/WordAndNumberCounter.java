@@ -1,3 +1,7 @@
+/** Приклад: 
+    аргумент: “The user with the nickname koala757677 this month wrote 3 times more comments than the user with the nickname croco181dile920 4 months ago”
+    Підрахувати кількість чисел у реченні.
+*/
 public class WordAndNumberCounter {
 
     public static void main(String[] args) {

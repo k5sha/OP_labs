@@ -1,6 +1,6 @@
 import java.util.*;
 
-class Employee {
+class Employee implements Comparable<Employee> {
     private String firstName;
     private String lastName;
     private double salary;
@@ -41,18 +41,24 @@ class Employee {
     public String toString() {
         return getFullName() + " (Зарплата: " + salary + ", Відділ: " + (department != null ? department.getName() : "Директор") + ")";
     }
+
+    // Порівняння працівників за зарплатою
+    @Override
+    public int compareTo(Employee other) {
+        return Double.compare(this.salary, other.salary);
+    }
 }
 
 class Department {
     private String name;
     private Employee manager;
-    private List<Employee> employees;
+    private Set<Employee> employees; // Заміна List на Set
 
     // Конструктор для ініціалізації відділу
     public Department(String name, Employee manager) {
         this.name = name;
         this.manager = manager;
-        this.employees = new ArrayList<>();
+        this.employees = new TreeSet<>(); // Використання TreeSet для автоматичного сортування
         this.manager = new Employee(manager.getFullName().split(" ")[0], manager.getFullName().split(" ")[1], manager.getSalary(), this);
     }
 
@@ -72,7 +78,7 @@ class Department {
     }
 
     // Метод для отримання списку працівників відділу
-    public List<Employee> getEmployees() {
+    public Set<Employee> getEmployees() {
         return employees;
     }
 }
@@ -80,13 +86,13 @@ class Department {
 class Company {
     private String name;
     private Employee director;
-    private List<Department> departments;
+    private Set<Department> departments; // Заміна List на Set
 
     // Конструктор для ініціалізації компанії
     public Company(String name, Employee director) {
         this.name = name;
         this.director = new Employee(director.getFullName().split(" ")[0], director.getFullName().split(" ")[1], director.getSalary(), null);
-        this.departments = new ArrayList<>();
+        this.departments = new TreeSet<>(Comparator.comparing(Department::getName)); // Сортуємо відділи за назвою
     }
 
     // Метод для додавання відділу до компанії
@@ -95,8 +101,8 @@ class Company {
     }
 
     // Метод для отримання списку всіх працівників, включаючи директора і начальників
-    public List<Employee> getAllEmployees() {
-        List<Employee> allEmployees = new ArrayList<>();
+    public Set<Employee> getAllEmployees() {
+        Set<Employee> allEmployees = new TreeSet<>(); // Використовуємо TreeSet для автоматичного сортування працівників
         allEmployees.add(director);
 
         // Додаємо менеджерів та працівників усіх відділів до списку
@@ -108,7 +114,7 @@ class Company {
     }
 
     // Метод для отримання списку всіх відділів
-    public List<Department> getDepartments() {
+    public Set<Department> getDepartments() {
         return departments;
     }
 }

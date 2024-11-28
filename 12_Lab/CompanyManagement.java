@@ -53,6 +53,7 @@ class Department {
     private String name;
     private Employee manager;
     private Set<Employee> employees; // Заміна List на Set
+    private Map<String, Employee> employeesByName = new HashMap<>();
 
     // Конструктор для ініціалізації відділу
     public Department(String name, Employee manager) {
@@ -60,11 +61,13 @@ class Department {
         this.manager = manager;
         this.employees = new TreeSet<>(); // Використання TreeSet для автоматичного сортування
         this.manager = new Employee(manager.getFullName().split(" ")[0], manager.getFullName().split(" ")[1], manager.getSalary(), this);
+        employeesByName.put(manager.getFullName(), manager);
     }
 
     // Метод для додавання працівника до відділу
     public void addEmployee(Employee employee) {
         employees.add(new Employee(employee.getFullName().split(" ")[0], employee.getFullName().split(" ")[1], employee.getSalary(), this));
+        employeesByName.put(employee.getFullName(), employee);
     }
 
     // Метод для отримання назви відділу
@@ -81,18 +84,25 @@ class Department {
     public Set<Employee> getEmployees() {
         return employees;
     }
+
+    public Employee findEmployeeByFullName(String fullName) {
+        if(fullName == null)
+            return null;
+
+        return employeesByName.get(fullName);
+    }
 }
 
 class Company {
     private String name;
     private Employee director;
-    private Set<Department> departments; // Заміна List на Set
+    private Set<Department> departments; // Заміна List на Set (HashSet)
 
     // Конструктор для ініціалізації компанії
     public Company(String name, Employee director) {
         this.name = name;
         this.director = new Employee(director.getFullName().split(" ")[0], director.getFullName().split(" ")[1], director.getSalary(), null);
-        this.departments = new TreeSet<>(Comparator.comparing(Department::getName)); // Сортуємо відділи за назвою
+        this.departments = new HashSet<>();
     }
 
     // Метод для додавання відділу до компанії
@@ -195,5 +205,15 @@ public class CompanyManagement {
         System.out.println("Максимальна зарплата: " + findMaxSalary(company));
         System.out.println("Відділи з працівниками, що отримують більше за начальника: " + findDepartmentsWithHigherPaidEmployees(company));
         printAllEmployees(company);
+
+        // Приклад використання пошуку
+        System.out.println("===================");
+        System.out.println("Пошук працівника: Анна Смірнова");
+        Employee foundEmployee = dept1.findEmployeeByFullName("Анна Смірнова");
+        if (foundEmployee != null) {
+            System.out.println("Знайдено працівника: " + foundEmployee + ", в департаменті " + dept1.getName());
+        } else {
+            System.out.println("Працівник не знайдений");
+        }
     }
 }

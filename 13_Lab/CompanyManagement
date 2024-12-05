@@ -1,5 +1,17 @@
 import java.util.*;
 
+class EmptyFieldException extends Exception {
+    public EmptyFieldException(String errorMessage) {
+        super(errorMessage);
+    }
+}
+
+class NegativeNumberException extends Exception {
+    public NegativeNumberException(String errorMessage) {
+        super(errorMessage);
+    }
+}
+
 class Employee implements Comparable<Employee> {
     private String firstName;
     private String lastName;
@@ -7,17 +19,25 @@ class Employee implements Comparable<Employee> {
     private Department department;
 
     // Конструктор для ініціалізації працівника
-    public Employee(String firstName, String lastName, double salary) {
+    public Employee(String firstName, String lastName, double salary)
+            throws EmptyFieldException, NegativeNumberException {
+
+        if (firstName == null || firstName.isBlank())
+            throw new EmptyFieldException("Надайде ім'я працівника");
+        if (lastName == null || lastName.isBlank())
+            throw new EmptyFieldException("Надайде прізвище працівника");
+        if (salary < 0)
+            throw new NegativeNumberException("Зарплата не може бути від'ємною");
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.salary = salary;
     }
 
     // Конструктор для ініціалізації працівника з відділом
-    public Employee(String firstName, String lastName, double salary, Department department) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.salary = salary;
+    public Employee(String firstName, String lastName, double salary, Department department)
+            throws NegativeNumberException, EmptyFieldException {
+        this(firstName, lastName, salary);
         this.department = department;
     }
 
@@ -56,17 +76,26 @@ class Department {
     private Map<String, Employee> employeesByName = new HashMap<>();
 
     // Конструктор для ініціалізації відділу
-    public Department(String name, Employee manager) {
+    public Department(String name, Employee manager) throws NegativeNumberException, EmptyFieldException {
         this.name = name;
         this.manager = manager;
         this.employees = new TreeSet<>(); // Використання TreeSet для автоматичного сортування
-        this.manager = new Employee(manager.getFullName().split(" ")[0], manager.getFullName().split(" ")[1], manager.getSalary(), this);
+        this.manager = new Employee(
+                manager.getFullName().split(" ")[0],
+                manager.getFullName().split(" ")[1],
+                manager.getSalary(),
+                this);
         employeesByName.put(manager.getFullName(), manager);
     }
 
     // Метод для додавання працівника до відділу
-    public void addEmployee(Employee employee) {
-        employees.add(new Employee(employee.getFullName().split(" ")[0], employee.getFullName().split(" ")[1], employee.getSalary(), this));
+    public void addEmployee(Employee employee) throws NegativeNumberException, EmptyFieldException {
+        employees.add(new Employee(
+                employee.getFullName().split(" ")[0],
+                employee.getFullName().split(" ")[1],
+                employee.getSalary(),
+                this)
+        );
         employeesByName.put(employee.getFullName(), employee);
     }
 
@@ -86,7 +115,7 @@ class Department {
     }
 
     public Employee findEmployeeByFullName(String fullName) {
-        if(fullName == null)
+        if (fullName == null)
             return null;
 
         return employeesByName.get(fullName);
@@ -99,9 +128,13 @@ class Company {
     private Set<Department> departments; // Заміна List на Set (HashSet)
 
     // Конструктор для ініціалізації компанії
-    public Company(String name, Employee director) {
+    public Company(String name, Employee director) throws NegativeNumberException, EmptyFieldException {
         this.name = name;
-        this.director = new Employee(director.getFullName().split(" ")[0], director.getFullName().split(" ")[1], director.getSalary(), null);
+        this.director = new Employee(
+                director.getFullName().split(" ")[0],
+                director.getFullName().split(" ")[1],
+                director.getSalary(),
+                null);
         this.departments = new HashSet<>();
     }
 
@@ -182,38 +215,78 @@ public class CompanyManagement {
 
     public static void main(String[] args) {
         // Створення директора компанії
-        Employee director = new Employee("Іван", "Іванов", 5000);
-        Company company = new Company("TechCorp", director);
+        Employee director = null;
+        try {
+            director = new Employee("Іван", "Іванов", 5000);
 
-        // Створення першого відділу і його працівників
-        Employee manager1 = new Employee("Петро", "Петров", 4000);
-        Department dept1 = new Department("IT", manager1);
-        dept1.addEmployee(new Employee("Анна", "Смірнова", 4500)); // Працівник із більшою зарплатою, ніж у начальника
-        dept1.addEmployee(new Employee("Олег", "Орлов", 3000));
+            Company company = new Company("TechCorp", director);
 
-        // Створення другого відділу і його працівників
-        Employee manager2 = new Employee("Марія", "Коваль", 3500);
-        Department dept2 = new Department("HR", manager2);
-        dept2.addEmployee(new Employee("Олена", "Новікова", 3200));
-        dept2.addEmployee(new Employee("Дмитро", "Бондаренко", 3600));
+            // Створення першого відділу і його працівників
+            Employee manager1 = new Employee("Петро", "Петров", 4000);
+            Department dept1 = new Department("IT", manager1);
+            dept1.addEmployee(new Employee("Анна", "Смірнова", 4500)); // Працівник із більшою зарплатою, ніж у начальника
+            dept1.addEmployee(new Employee("Олег", "Орлов", 3000));
 
-        // Додавання відділів до компанії
-        company.addDepartment(dept1);
-        company.addDepartment(dept2);
+            // Створення другого відділу і його працівників
+            Employee manager2 = new Employee("Марія", "Коваль", 3500);
+            Department dept2 = new Department("HR", manager2);
+            dept2.addEmployee(new Employee("Олена", "Новікова", 3200));
+            dept2.addEmployee(new Employee("Дмитро", "Бондаренко", 3600));
 
-        // Виклик завдань
-        System.out.println("Максимальна зарплата: " + findMaxSalary(company));
-        System.out.println("Відділи з працівниками, що отримують більше за начальника: " + findDepartmentsWithHigherPaidEmployees(company));
-        printAllEmployees(company);
+            // Додавання відділів до компанії
+            company.addDepartment(dept1);
+            company.addDepartment(dept2);
 
-        // Приклад використання пошуку
+            // Виклик завдань
+            System.out.println("Максимальна зарплата: " + findMaxSalary(company));
+            System.out.println("Відділи з працівниками, що отримують більше за начальника: " + findDepartmentsWithHigherPaidEmployees(company));
+            printAllEmployees(company);
+
+            // Приклад використання пошуку
+            System.out.println("===================");
+            System.out.println("Пошук працівника: Анна Смірнова");
+            Employee foundEmployee = dept1.findEmployeeByFullName("Анна Смірнова");
+            if (foundEmployee != null) {
+                System.out.println("Знайдено працівника: " + foundEmployee + ", в департаменті " + dept1.getName());
+            } else {
+                System.out.println("Працівник не знайдений");
+            }
+        } catch (EmptyFieldException | NegativeNumberException e) {
+            System.out.println(e.getMessage());
+        } finally {
+            System.out.println("Завершено процеси створення працівників, компаній, департаментів і тестування");
+        }
+
         System.out.println("===================");
-        System.out.println("Пошук працівника: Анна Смірнова");
-        Employee foundEmployee = dept1.findEmployeeByFullName("Анна Смірнова");
-        if (foundEmployee != null) {
-            System.out.println("Знайдено працівника: " + foundEmployee + ", в департаменті " + dept1.getName());
-        } else {
-            System.out.println("Працівник не знайдений");
+
+        // Приклад виклику помилки
+        try {
+            new Employee("Марія", "Коваль", -50);
+        } catch (EmptyFieldException | NegativeNumberException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            new Employee("Марія", null, 1000);
+        } catch (EmptyFieldException | NegativeNumberException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            new Employee("", "", 1000);
+        } catch (EmptyFieldException | NegativeNumberException e) {
+            System.out.println(e.getMessage());
+        }
+
+        System.out.println("===================");
+
+        // Приклад виклику помилки Runtime
+
+        try {
+            String name = null;
+            name.isEmpty();
+        }catch(NullPointerException e){
+            System.out.println(e.getMessage());
         }
     }
 }
